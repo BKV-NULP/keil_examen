@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    ADC.c          2019-12-24
+* $Id$    ADC.c          2019-01-24
 *
 * @file    ADC.c
 * @brief	This file is intended for use with ADC.
-* @version  3.0
-* @date    24. December. 2019
+* @version  4.0
+* @date    24. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -15,7 +15,6 @@
 *	The corresponding changes will be reflected in the terminal.
 **********************************************************************/
 
-#include "debug_frmwrk.h"
 
 #include "lpc17xx_pinsel.h"
 #include "ADC.h"
@@ -24,13 +23,9 @@
 
 
 
-//#include "startup_LPC17xx.c"
-
-
-uint8_t ADCflag = 0;
 	uint32_t adc_value, tmp=0;
 	float volt = 0;
-	char str1[10];
+	
 
 void InitCanal(PINSEL_CFG_Type PinCfg){
 	PinCfg.Funcnum = 1;
@@ -41,7 +36,7 @@ void InitCanal(PINSEL_CFG_Type PinCfg){
 	PINSEL_ConfigPin(&PinCfg);
 }
 
-void ReadVoltage(){
+float ReadVoltage(){
 	
 	PINSEL_CFG_Type PinCfg;
 
@@ -58,16 +53,5 @@ void ReadVoltage(){
 		while (!(ADC_ChannelGetStatus(LPC_ADC,_ADC_CHANNEL,ADC_DATA_DONE)));
 		adc_value = ADC_ChannelGetData(LPC_ADC,_ADC_CHANNEL);
 		//Display the result of conversion on the UART0
-		volt = 3.3*adc_value/4096;
-		
-
-}
-
-
-void ReadVoltageCount(void){
-		
-		/*if(SysTickCnt>=1000){
-				SysTickCnt = 0;
-				ReadVoltage();
-		}*/
+		return (3.3*adc_value/4096);
 }

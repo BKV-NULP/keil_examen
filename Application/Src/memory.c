@@ -1,14 +1,16 @@
 /**********************************************************************
-* $Id$    memory.c          2019-12-24
+* $Id$    memory.c          2019-01-24
 *
 * @file    memory.c
 * @brief  This example describes the functions of recording and reading data from memory 
-* @version  3.0
-* @date    24. December. 2019
+* @version  4.0
+* @date    24. January. 2019
 * @author  BVK
 *
 *******************************************************************
 The MEMORY pins in this project use pins P0.27 - P0.28.
+- SDA -> P0.27
+- SCL -> P0.28
 * This file contains 3 functions that are called from the main file. The functions are used to work with the memory.
 * The write_memory(LPC_I2C_TypeDef *I2Cx, uint8_t data_start,uint16_t lengtch , uint8_t* b)  
 * function takes in the parameters 4 values:
@@ -49,9 +51,6 @@ uint8_t* read_memory(LPC_I2C_TypeDef *I2Cx, uint8_t data_start,uint16_t lengtch 
 	transferMCfg.rx_length = lengtch;
 	transferMCfg.retransmissions_max = 3;
 	I2C_MasterTransferData(I2Cx, &transferMCfg, I2C_TRANSFER_POLLING);
-	//_DBG("\n");
-	//_DBG((char*)b);
-	//_DBG("\n");
 	k = (char*)b;
 	return 0;
 }

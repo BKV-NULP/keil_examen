@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    TIME.c          2019-12-24
+* $Id$    TIME.c          2020-01-24
 *
 * @file    TIME.c
 * @brief	This file is intended for use with time.
-* @version  3.0
-* @date    24. December. 2019
+* @version  4.0
+* @date    24. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -18,10 +18,30 @@
 
 volatile unsigned long SysTickCnt = 0;
 unsigned long time = 0;
-char str2[20];
+int flagTime = 0;
 
 
-void getTime(){
-		//char str2[20];
+void SysTick_Handler (void) {
+  SysTickCnt++;
+	if(SysTickCnt>=1000){
+		setFlag(1);
+		SysTickCnt = 0;
+		time++;
+	}
+}
 
+ unsigned long getTime(void){
+		return time;
+}
+ 
+int getFlag(void){
+	return flagTime;
+}
+
+void setFlag(int variable){
+	flagTime = variable;
+}
+
+void timer_init(void){
+	SysTick_Config(SystemCoreClock/1000 - 1); 
 }

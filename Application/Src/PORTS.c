@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    PORTS.c          2019-12-24
+* $Id$    PORTS.c          2019-01-24
 *
 * @file    PORTS.c
 * @brief	This file is intended for use with GPIO.
-* @version  3.0
-* @date    24. December. 2019
+* @version  4.0
+* @date    24. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -18,7 +18,10 @@
 
 int flag;
 
-void ReadPin(uint8_t port, uint8_t pin){
+int ReadPin(uint8_t port, uint8_t pin){
+	
+	int flag;
+	
 	GPIO_SetDir(port, (0x00000000 & 0x00000001)<<pin, 1);           /* LEDs on PORT1 defined as Output    */
 
   GPIO_ClearValue(port,(0x00000000 & 0x00000001)<<pin);
@@ -28,9 +31,8 @@ void ReadPin(uint8_t port, uint8_t pin){
 		flag = 1;
 	}else{
 		flag = 0;
-}
-	//_DBG("\n--------\n");
-
+	}
+	return flag;
 }
 
 void WritePin_OnOff(uint8_t port, uint8_t pin, uint8_t data){
@@ -42,4 +44,12 @@ void WritePin_OnOff(uint8_t port, uint8_t pin, uint8_t data){
 	}else{
 		 GPIO_ClearValue(port, 1<<pin);
 	}	
+}
+
+void GPIO_init(void){
+	GPIO_SetDir(1, 0xB0000000, 1);         
+  GPIO_SetDir(2, 0x0000007C, 1);           
+
+  GPIO_ClearValue(1, 0xB0000000);
+  GPIO_ClearValue(2, 0x0000007C);
 }

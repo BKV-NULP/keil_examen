@@ -1,11 +1,11 @@
 /**********************************************************************
-* $Id$    PWM.c          2019-12-24
+* $Id$    PWM.c          2020-01-24
 *
 * @file    PWM.c
 * @brief  This example describes use of PWM to set the brightness of the LEDs and read duty cycle 
 * from the specified pin
-* @version  3.0
-* @date    24. December. 2019
+* @version  4.0
+* @date    24. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -30,34 +30,8 @@ BOOL_8 toggle=TRUE, first_capture, done;
 uint8_t tem, temp, temp2, count=0,cs = 0;
 uint32_t T1, T2, temcap, capture;
 
-/*inline void ClearInterruptFlagEINTX(uint32_t X)
-{
-    LPC_SC->EXTINT |= (1<<X);  // Clear Interrupt Flag
-}
-
-void InitPower()
-{
-    LPC_SC->PCONP |= (1 << 15);                     // Enable power
-}
-
-void InitLED()
-{
-    LPC_PINCON->PINSEL3 &= ~(0 << 25) | ~(0 << 24);   // LED connected to P1.28 is in GPIO mode (see Table 83)
-    LPC_GPIO1->FIODIR   = (1<< 28);                   // Configure LED pins as OUTPUT - P1.28
-    LPC_GPIO1->FIOCLR |= (1 << 28);                   // set P1.28 to LOW
-}
-void InitPushButton()
-{
-
-    LPC_PINCON->PINSEL4     =     (1<<20);      // Configure P2_10, as EINT0
-    LPC_GPIO2->FIODIR       &= ~(0 << 10);      // P2.10 is an input pin
-    LPC_GPIOINT->IO2IntEnF  |=  (1 << 10);      // P2.10 reads the falling edges to generate an interrupt
-
-}*/
-
 void ReadPinPWM(uint16_t num, uint16_t perc)
 {
-	
 	
 	GPIO_SetDir(1, 0xB0000000, 1);         
   GPIO_SetDir(2, 0x0000007C, 1);           
@@ -144,30 +118,12 @@ void ReadPinPWM(uint16_t num, uint16_t perc)
 	PWM_Cmd(LPC_PWM1, ENABLE);
 	//_DBG("\n");
 }
-/*void ToggleLED()
-{
-    #define CHECK_BIT(var,pos) ((var) & (1<<(pos)))
-
-    // check if bit is set, then toggle it depending on result.
-    if(CHECK_BIT(LPC_GPIO1->FIOPIN, 28))
-    {
-        LPC_GPIO1->FIOCLR |= (1 << 28);
-    }
-    else
-    {
-        LPC_GPIO1->FIOSET |= (1 << 28);
-    }
-}*/
 
 int ReadDCPin(uint8_t pin_num)
 {
 		uint16_t num = pin_num + 1;
-	//uint32_t param = 0;
 		param = PWM_MatchRead(LPC_PWM1, num)*100 / 256;
-	return param;
-		//_DBG("Duty cycle value = ");
-		//_DBD(param);
-		//_DBG("%");
-		//_DBG("\n");
+		return param;
+	
 }
 

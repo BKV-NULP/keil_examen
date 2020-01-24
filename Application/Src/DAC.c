@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    DAC.c          2019-12-24
+* $Id$    DAC.c          2019-01-24
 *
 * @file    DAC.c
 * @brief	This file is intended for use with DAC.
-* @version  3.0
-* @date    24. December. 2019
+* @version  4.0
+* @date    24. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -113,4 +113,8 @@ void OutputVoltage(){
 	// Enable GPDMA channel 0
 	GPDMA_ChannelCmd(0, ENABLE);
 	//while(1);
+}
+
+void OffDAC(void){
+	GPDMA_ChannelCmd(0, DISABLE);
 }

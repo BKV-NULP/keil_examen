@@ -19,6 +19,7 @@
 ".\objects\time.o"
 ".\objects\pwm.o"
 ".\objects\memory.o"
+".\objects\parser.o"
 ".\objects\main.o"
 --strict --scatter ".\Objects\Legenda.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

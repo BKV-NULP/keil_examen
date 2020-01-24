@@ -492,6 +492,11 @@
               <FileType>1</FileType>
               <FilePath>.\Application\Src\memory.c</FilePath>
             </File>
+            <File>
+              <FileName>PARSER.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\Src\PARSER.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

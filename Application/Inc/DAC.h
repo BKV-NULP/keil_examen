@@ -13,7 +13,7 @@
 
 void InitCanale(PINSEL_CFG_Type PinCfg);
 void OutputVoltage(void);
-
+void OffDAC(void);
 
 #endif
 

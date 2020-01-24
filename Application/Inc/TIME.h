@@ -1,8 +1,9 @@
 #ifndef TIME_H
 #define TIME_H
 
-extern unsigned long time;
-extern volatile unsigned long SysTickCnt;
 
-void getTime(void);
+unsigned long getTime(void);
+int getFlag(void);
+void setFlag(int variable);
+void timer_init(void);
 #endif

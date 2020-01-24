@@ -140,23 +140,20 @@ I (.\Library\Import\Include\lpc_types.h)(0x4FC00119)
 I (.\Library\Import\Include\lpc17xx_clkpwr.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_pinsel.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_libcfg_default.h)(0x4FC00118)
-F (.\Application\Src\PORTS.c)(0x5E19F0C4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\ports.o --omf_browse .\objects\ports.crf --depend .\objects\ports.d)
-I (.\Application\Inc\PORTS.h)(0x5E19BD56)
-I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
-I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
-I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
-I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x5D25D706)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEBC032)
-I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x5D25D706)
-I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5D25D706)
-I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D25D706)
-I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8F9424)
-I (.\Library\Systems\Include\system_LPC17xx.h)(0x4FC00118)
+F (.\Application\Src\PORTS.c)(0x5E2B33FA)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\ports.o --omf_browse .\objects\ports.crf --depend .\objects\ports.d)
+I (.\Application\Inc\PORTS.h)(0x5E2B33FD)
 I (.\Library\Import\Include\lpc_types.h)(0x4FC00119)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEBC032)
 I (.\Library\Import\Include\lpc17xx_gpio.h)(0x4FC00118)
-F (.\Application\Src\ADC.c)(0x5E1893C4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
-I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
-I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
+I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
+I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x5D25D706)
+I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x5D25D706)
+I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5D25D706)
+I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D25D706)
+I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8F9424)
+I (.\Library\Systems\Include\system_LPC17xx.h)(0x4FC00118)
+F (.\Application\Src\ADC.c)(0x5E2B33F3)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
+I (.\Library\Import\Include\lpc17xx_pinsel.h)(0x4FC00118)
 I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
 I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x5D25D706)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEBC032)
@@ -166,12 +163,11 @@ I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cms
 I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8F9424)
 I (.\Library\Systems\Include\system_LPC17xx.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc_types.h)(0x4FC00119)
-I (.\Library\Import\Include\lpc17xx_pinsel.h)(0x4FC00118)
-I (.\Application\Inc\ADC.h)(0x5E1893F2)
+I (.\Application\Inc\ADC.h)(0x5E2AB6D4)
 I (.\Library\Import\Include\lpc17xx_libcfg_default.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_adc.h)(0x4FC00118)
-F (.\Application\Src\DAC.c)(0x5E1894D3)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\dac.o --omf_browse .\objects\dac.crf --depend .\objects\dac.d)
-I (.\Application\Inc\DAC.h)(0x5E1893FB)
+F (.\Application\Src\DAC.c)(0x5E2AD8E5)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\dac.o --omf_browse .\objects\dac.crf --depend .\objects\dac.d)
+I (.\Application\Inc\DAC.h)(0x5E2B343E)
 I (.\Library\Import\Include\lpc17xx_dac.h)(0x4FC00118)
 I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
 I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x5D25D706)
@@ -186,8 +182,8 @@ I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_gpdma.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_pinsel.h)(0x4FC00118)
-F (.\Application\Src\TERMINAL.c)(0x5E19F00D)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\terminal.o --omf_browse .\objects\terminal.crf --depend .\objects\terminal.d)
-I (.\Application\Inc\TERMINAL.h)(0x5E19C270)
+F (.\Application\Src\TERMINAL.c)(0x5E2B341C)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\terminal.o --omf_browse .\objects\terminal.crf --depend .\objects\terminal.d)
+I (.\Application\Inc\TERMINAL.h)(0x5E2AC8D5)
 I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
 I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
@@ -199,19 +195,20 @@ I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cms
 I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8F9424)
 I (.\Library\Systems\Include\system_LPC17xx.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc_types.h)(0x4FC00119)
-I (.\Application\Inc\PORTS.h)(0x5E19BD56)
-I (.\Application\Inc\ADC.h)(0x5E1893F2)
+I (.\Application\Inc\PORTS.h)(0x5E2B33FD)
+I (.\Application\Inc\ADC.h)(0x5E2AB6D4)
 I (.\Library\Import\Include\lpc17xx_pinsel.h)(0x4FC00118)
-I (.\Application\Inc\DAC.h)(0x5E1893FB)
+I (.\Application\Inc\DAC.h)(0x5E2B343E)
 I (.\Library\Import\Include\lpc17xx_dac.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_gpdma.h)(0x4FC00118)
 I (.\Application\Inc\memory.h)(0x5E1893FF)
 I (.\Application\Inc\PWM.h)(0x5E19E4F6)
-I (.\Application\Inc\time.h)(0x5E18940A)
+I (.\Application\Inc\time.h)(0x5E2B3433)
 I (.\Library\Import\Include\lpc17xx_gpio.h)(0x4FC00118)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5CEBC032)
-F (.\Application\Src\TIME.c)(0x5E1894E9)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\time.o --omf_browse .\objects\time.crf --depend .\objects\time.d)
-I (.\Application\Inc\time.h)(0x5E18940A)
+I (.\Application\Inc\PARSER.H)(0x5E2B340B)
+F (.\Application\Src\TIME.c)(0x5E2AD8E6)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\time.o --omf_browse .\objects\time.crf --depend .\objects\time.d)
+I (.\Application\Inc\time.h)(0x5E2B3433)
 I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
 I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
@@ -223,7 +220,7 @@ I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cms
 I (C:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8F9424)
 I (.\Library\Systems\Include\system_LPC17xx.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc_types.h)(0x4FC00119)
-F (.\Application\Src\PWM.c)(0x5E19E773)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\pwm.o --omf_browse .\objects\pwm.crf --depend .\objects\pwm.d)
+F (.\Application\Src\PWM.c)(0x5E2AD8E5)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\pwm.o --omf_browse .\objects\pwm.crf --depend .\objects\pwm.d)
 I (.\Application\Inc\PWM.h)(0x5E19E4F6)
 I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
@@ -240,7 +237,7 @@ I (.\Library\Import\Include\lpc17xx_gpio.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_timer.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_pwm.h)(0x5E19BA71)
 I (.\Library\Import\Include\lpc17xx_pinsel.h)(0x4FC00118)
-F (.\Application\Src\memory.c)(0x5E19EA6A)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\memory.o --omf_browse .\objects\memory.crf --depend .\objects\memory.d)
+F (.\Application\Src\memory.c)(0x5E2B33E7)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\memory.o --omf_browse .\objects\memory.crf --depend .\objects\memory.d)
 I (.\Application\Inc\memory.h)(0x5E1893FF)
 I (.\Library\Import\Include\lpc17xx_pinsel.h)(0x4FC00118)
 I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
@@ -255,8 +252,12 @@ I (.\Library\Import\Include\lpc_types.h)(0x4FC00119)
 I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_i2c.h)(0x4FC00118)
-F (.\Users\main.c)(0x5E189FC0)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (.\Application\Inc\TERMINAL.h)(0x5E19C270)
+F (.\Application\Src\PARSER.c)(0x5E2B3400)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\parser.o --omf_browse .\objects\parser.crf --depend .\objects\parser.d)
+I (.\Application\Inc\PARSER.h)(0x5E2B340B)
+I (.\Library\Import\Include\lpc_types.h)(0x4FC00119)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEBC032)
+F (.\Users\main.c)(0x5E29F001)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Library\Systems\Include -I ..\Legendarne_Zavdanna -I .\Library\Import\Include -I .\Application\Inc-I.\RTE\_Legenda-IC:\Users\sania\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\sania\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.6.0\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DLPC175x_6x-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\Application\Inc\TERMINAL.h)(0x5E2AC8D5)
 I (.\Library\Import\Include\debug_frmwrk.h)(0x4FC00118)
 I (.\Library\Import\Include\lpc17xx_uart.h)(0x4FC00118)
 I (.\Library\Systems\Include\LPC17xx.h)(0x4FC00118)
