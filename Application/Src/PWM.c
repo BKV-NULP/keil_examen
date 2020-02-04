@@ -1,11 +1,11 @@
 /**********************************************************************
-* $Id$    PWM.c          2020-01-24
+* $Id$    pwm.c          2020-01-30
 *
-* @file    PWM.c
+* @file    pwm.c
 * @brief  This example describes use of PWM to set the brightness of the LEDs and read duty cycle 
 * from the specified pin
-* @version  4.0
-* @date    24. January. 2019
+* @version  5.0
+* @date    31. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -18,19 +18,20 @@
 *  The ReadDCPin(uint8_t pin_num) function takes in the parameters 1 values:
 *  pin_num - the LED pin number from which the user wants to read the duty cycle value as a percentage;
 **********************************************************************/
-#include "PWM.h"
+#include "pwm.h"
 #include "lpc17xx_gpio.h"
 #include "lpc17xx_timer.h"
 #include "lpc17xx_pwm.h"
 #include "lpc17xx_pinsel.h"
 
-uint32_t param = 0;
-uint8_t volatile timer0_flag = FALSE, timer1_flag = FALSE;
+
+uint8_t  timer0_flag = FALSE, timer1_flag = FALSE;
 BOOL_8 toggle=TRUE, first_capture, done;
 uint8_t tem, temp, temp2, count=0,cs = 0;
 uint32_t T1, T2, temcap, capture;
 
-void ReadPinPWM(uint16_t num, uint16_t perc)
+
+void readPinPWM(uint16_t lNum, uint16_t lPerc)
 {
 	
 	GPIO_SetDir(1, 0xB0000000, 1);         
@@ -39,16 +40,12 @@ void ReadPinPWM(uint16_t num, uint16_t perc)
   GPIO_ClearValue(1, 0xB0000000);
   GPIO_ClearValue(2, 0x0000007C);
 	
-		PINSEL_CFG_Type PinCfg;
-	debug_frmwrk_init();
+	PINSEL_CFG_Type PinCfg;
 	
-	//for(;;){
-	//_DBG("dsfgnm");
-	//}
 	uint8_t temp2;
 	PWM_TIMERCFG_Type PWMCfgDat;
 	PWM_MATCHCFG_Type PWMMatchCfgDat;
-	//PINSEL_CFG_Type PinCfg;
+
 
 	/* PWM block section -------------------------------------------- */
 	/* Initialize PWM peripheral, timer mode
@@ -64,11 +61,11 @@ void ReadPinPWM(uint16_t num, uint16_t perc)
 	PinCfg.OpenDrain = 0;
 	PinCfg.Pinmode = 0;
 	PinCfg.Portnum = 2;
-	//for (temp = 0; temp <= 5; temp++){
-		PinCfg.Pinnum = num;
-		PINSEL_ConfigPin(&PinCfg);
-	//}
-	PWM_MatchUpdate(LPC_PWM1, 0, 256, PWM_MATCH_UPDATE_NOW);
+	
+	PinCfg.Pinnum = lNum;
+	PINSEL_ConfigPin(&PinCfg);
+
+	PWM_MatchUpdate(LPC_PWM1, 0, cQuantityScalePWM, PWM_MATCH_UPDATE_NOW);
 	/* PWM Timer/Counter will be reset when channel 0 matching
 	 * no interrupt when match
 	 * no stop when match */
@@ -89,41 +86,34 @@ void ReadPinPWM(uint16_t num, uint16_t perc)
 	/* Configure PWM channel edge option
 	 * Note: PWM Channel 1 is in single mode as default state and
 	 * can not be changed to double edge mode */
-	//for (temp = 2; temp < 7; temp++)
-	//{
-		PWM_ChannelConfig(LPC_PWM1, num+1, PWM_CHANNEL_SINGLE_EDGE);
-	//}	
-	//temp2=10;
-	temp2 = 256 * perc / 100;
-	
-		/* Set up match value */
-		PWM_MatchUpdate(LPC_PWM1, num+1, temp2, PWM_MATCH_UPDATE_NOW);
-		/* Configure match option */
-		PWMMatchCfgDat.IntOnMatch = DISABLE;
-		PWMMatchCfgDat.MatchChannel = num+1;
-		PWMMatchCfgDat.ResetOnMatch = DISABLE;
-		PWMMatchCfgDat.StopOnMatch = DISABLE;
-		PWM_ConfigMatch(LPC_PWM1, &PWMMatchCfgDat);
-		/* Enable PWM Channel Output */
-		PWM_ChannelCmd(LPC_PWM1, num+1, ENABLE);
-		/* Increase match value by 10 */
-		//temp2 += 40;
-	
 
-	/* Reset and Start counter */
+	PWM_ChannelConfig(LPC_PWM1, lNum+1, PWM_CHANNEL_SINGLE_EDGE);
+
+	temp2 = 256 * lPerc / 100;
+	
+	// Set up match value 
+	PWM_MatchUpdate(LPC_PWM1, lNum+1, temp2, PWM_MATCH_UPDATE_NOW);
+	// Configure match option 
+	PWMMatchCfgDat.IntOnMatch = DISABLE;
+	PWMMatchCfgDat.MatchChannel = lNum+1;
+	PWMMatchCfgDat.ResetOnMatch = DISABLE;
+	PWMMatchCfgDat.StopOnMatch = DISABLE;
+	PWM_ConfigMatch(LPC_PWM1, &PWMMatchCfgDat);
+	// Enable PWM Channel Output 
+	PWM_ChannelCmd(LPC_PWM1, lNum+1, ENABLE);
+
+	// Reset and Start counter 
 	PWM_ResetCounter(LPC_PWM1);
 	PWM_CounterCmd(LPC_PWM1, ENABLE);
 
-	/* Start PWM now */
+	// Start PWM now 
 	PWM_Cmd(LPC_PWM1, ENABLE);
-	//_DBG("\n");
+
 }
 
-int ReadDCPin(uint8_t pin_num)
-{
-		uint16_t num = pin_num + 1;
-		param = PWM_MatchRead(LPC_PWM1, num)*100 / 256;
-		return param;
-	
+int readDCPinPWM(uint8_t lPinNum)
+{		
+		// 100 - range from 0 to 100
+ 		return PWM_MatchRead(LPC_PWM1, lPinNum + 1)*100 / cQuantityScalePWM;  
 }
 

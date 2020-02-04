@@ -458,34 +458,19 @@
           <GroupName>Application</GroupName>
           <Files>
             <File>
-              <FileName>PORTS.c</FileName>
+              <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Application\Src\PORTS.c</FilePath>
+              <FilePath>.\Application\Src\adc.c</FilePath>
             </File>
             <File>
-              <FileName>ADC.c</FileName>
+              <FileName>dac.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Application\Src\ADC.c</FilePath>
+              <FilePath>.\Application\Src\dac.c</FilePath>
             </File>
             <File>
-              <FileName>DAC.c</FileName>
+              <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Application\Src\DAC.c</FilePath>
-            </File>
-            <File>
-              <FileName>TERMINAL.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\Src\TERMINAL.c</FilePath>
-            </File>
-            <File>
-              <FileName>TIME.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\Src\TIME.c</FilePath>
-            </File>
-            <File>
-              <FileName>PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\Src\PWM.c</FilePath>
+              <FilePath>.\Application\Src\gpio.c</FilePath>
             </File>
             <File>
               <FileName>memory.c</FileName>
@@ -493,9 +478,24 @@
               <FilePath>.\Application\Src\memory.c</FilePath>
             </File>
             <File>
-              <FileName>PARSER.c</FileName>
+              <FileName>parser.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Application\Src\PARSER.c</FilePath>
+              <FilePath>.\Application\Src\parser.c</FilePath>
+            </File>
+            <File>
+              <FileName>pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\Src\pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>terminal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\Src\terminal.c</FilePath>
+            </File>
+            <File>
+              <FileName>time.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\Src\time.c</FilePath>
             </File>
           </Files>
         </Group>

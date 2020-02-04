@@ -11,9 +11,9 @@
 #define SINE_FREQ_IN_HZ	60
 #define PCLK_DAC_IN_MHZ	25
 
-void InitCanale(PINSEL_CFG_Type PinCfg);
-void OutputVoltage(void);
-void OffDAC(void);
+void initCanalDAC(PINSEL_CFG_Type lPinCfg);
+void outputVoltageDAC(void);
+void offDAC(void);
 
 #endif
 

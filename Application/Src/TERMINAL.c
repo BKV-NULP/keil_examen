@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    TERMINAL.c          2019-01-24
+* $Id$    terminal.c          2019-01-24
 *
-* @file    TERMINAL.c
+* @file    terminal.c
 * @brief	File to work with the terminal via the UART interface.
-* @version  4.0
-* @date    24. January. 2019
+* @version  5.0
+* @date    31. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -16,13 +16,13 @@
 * A help menu has been implemented to assist the user while working.
 **********************************************************************/
 
-#include "TERMINAL.h"
-#include "PORTS.h"
-#include "ADC.h"
+#include "terminal.h"
+#include "gpio.h"
+#include "adc.h"
 
-#include "DAC.h"
+#include "dac.h"
 #include "memory.h"
-#include "PWM.h"
+#include "pwm.h"
 #include "time.h"
 
 #include "debug_frmwrk.h"
@@ -32,12 +32,8 @@
 
 #include "PARSER.H"
 
-UART_CFG_Type UARTConfigStruct;
-uint32_t MatchCount;
-
 int i, c = 0;
 uint8_t b[9] = {0};
-uint8_t d[8] = {0};
 
 uint8_t counts = 0;
 
@@ -87,10 +83,21 @@ void help(){
 }
 
 int terminal(){
-	timer_init();
 	
+	//local variable
+	
+	PINSEL_CFG_Type lPinCfgADC;
+	PINSEL_CFG_Type lPinCfgDAC;
+	PINSEL_CFG_Type lPinCfgMemmory;
+	
+	//part init modul
+	
+	initTimer();
 	debug_frmwrk_init();
-	GPIO_init();
+	initGPIO();
+	initCanalADC(lPinCfgADC);
+	initCanalDAC(lPinCfgDAC);
+	initCanalMemmory(lPinCfgMemmory);
 	enum State st = DAC;
 	for(;;){
 		_DBG("start");
@@ -105,38 +112,42 @@ int terminal(){
 				_DBG("\n---------------HELP----------------\n");
 				help();
 				break;
+			
 			case PINX:
 				_DBG("\n---------------PINX----------------\n");
-				if(ReadPin(getPort(), getPin()) == 1) _DBG("Pin ON\n");
+				if(readPin(getPort(), getPin()) == 1) _DBG("Pin ON\n");
 				else _DBG("Pin OFF\n");
 				break;
+			
 			case PINXexactlyY:
-				WritePin_OnOff(getPort(), getPin(), getData());
+				writePinOnOff(getPort(), getPin(), getData());
 				_DBG("\n---------------PINX=Y----------------\n");
 				break;
+			
 			case ADC:
 				_DBG("\n---------------ADC----------------\n");
-			
-				sprintf(str1,"%f V",ReadVoltage());
+				sprintf(str1,"%f V",readVoltageADC());
 				_DBG("ADC value on channel 2: ");
 				_DBG(str1);
 				_DBG("\n ");
 				break;
+			
 			case ADCcount:
 				_DBG("\n---------------ADCcount----------------\n");
 				i = 0;
 				while(i<10){//It`s time in second how long will be to work ADC
-				if(getFlag() == 1)
+					if(getFlag() == 1) // chack flag
 					{
-						sprintf(str1,"%f V",ReadVoltage());
+						sprintf(str1,"%f V",readVoltageADC());
 						_DBG("ADC value on channel 2: ");
 						_DBG(str1);
 						_DBG("\n ");
-						setFlag(0);			
+						setFlag(0);			 //reset flag
 						i++;
 					}
 				}
 				break;
+			
 			case TIME:
 				_DBG("\n---------------TIME----------------\n");
 				sprintf(str2,"%lu second",getTime());
@@ -144,53 +155,67 @@ int terminal(){
 				_DBG(str2);
 				_DBG("\n");
 				break;
+			
 			case DAC:
 				_DBG("\n---------------DAC----------------\n");
 				_DBG("Please, use osciloscope\n");
-				OutputVoltage();
 				
-				while(c<5)
+				outputVoltageDAC();
+				
+				while(c<5)// we wait for 5 second 
 				{
-					if(getFlag() == 1){
+					if(getFlag() == 1){ // check flag
 						c++;
-						setFlag(0);	
+						setFlag(0);	// reset flag 
 					}
 				}
 				
-				OffDAC();
+				offDAC();
 				break;
+			
 			case STORE:
 				_DBG("\n---------------STORE----------------\n");
 				uint8_t* data_strrr;
-			data_strrr = getDataStr();
+				data_strrr = getDataStr();
 				for(int i = 1; i<9; i++){
 					b[i] = data_strrr[i-1];
 				}
 				b[0] = 0;
-				write_memory(I2CDEV_M, 0 ,9 , b);
-			
+				if(writeMemory(I2CDEV_M, 0 ,8 , b) == SUCCESS){
+					_DBG("SUCCESS! We write data to memmory!!!");
+				}else{
+					_DBG("Error! We can`t to write data to memmory!!!");
+				}
 				break;
+			
 			case READ:
 				_DBG("\n---------------read----------------\n");
-				
-				read_memory(I2CDEV_M, 0 ,8 , d);
 				_DBG("\n");
-				_DBG(k);
+				
+				if(readMemory(I2CDEV_M, 0 ,8) == SUCCESS){
+					_DBG((char*)getMemmoryData());
+				}
+				else{
+					_DBG("Error! We can`t to read data with memmory!!!");
+				}
 				_DBG("\n");
 				break;
+			
 			case PWMXexactlyY:
 				_DBG("\n---------------PWMXexactlyY--------------\n");
-				ReadPinPWM(getPin(), getDC());
+				readPinPWM(getPin(), getDC());
 				_DBG("\nDone.Please, watch on the pin.\n");
 				break;
+			
 			case PWMX:
 				_DBG("\n---------------PWMX----------------\n");
-				ReadDCPin(getPin());
+				
 				_DBG("\nDuty cycle value = ");
-				_DBD(ReadDCPin(getPin()));
+				_DBD(readDCPinPWM(getPin()));
 				_DBG("%");
 				_DBG("\n");
 				break;
+			
 			default:
 				_DBG("\nError comand\n");
 				help();
@@ -203,6 +228,7 @@ int terminal(){
 enum State ReadUart(){
 	uint8_t t[20];
 	char* str;
+	
 	for(int i = 0; i< 20; i++){
 		t[i] = _DG;
 		if(t[i] == 0x0D){
@@ -213,7 +239,7 @@ enum State ReadUart(){
 
 	str = (char*)t;	
 	
-	return parser(str, counts);
+	return Parser(str, counts);
 }
 
 

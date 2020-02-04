@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    DAC.c          2019-01-24
+* $Id$    dac.c          2019-01-24
 *
-* @file    DAC.c
+* @file    dac.c
 * @brief	This file is intended for use with DAC.
-* @version  4.0
-* @date    24. January. 2019
+* @version  5.0
+* @date    31. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -12,40 +12,32 @@
 *	The DAC generates a sinusoidal signal from the coefficient table.
 * The signal is output at P0.26. Use an oscilloscope to demonstrate the result.
 **********************************************************************/
-#include "DAC.h"
+#include "dac.h"
 
-void InitCanale(PINSEL_CFG_Type PinCfg){
-	PinCfg.Funcnum = 2;
-	PinCfg.OpenDrain = 0;
-	PinCfg.Pinmode = 0;
-	PinCfg.Pinnum = 26;
-	PinCfg.Portnum = 0;
-	PINSEL_ConfigPin(&PinCfg);
+void initCanalDAC(PINSEL_CFG_Type lPinCfg){
+	lPinCfg.Funcnum = 2;
+	lPinCfg.OpenDrain = 0;
+	lPinCfg.Pinmode = 0;
+	lPinCfg.Pinnum = 26;
+	lPinCfg.Portnum = 0;
+	PINSEL_ConfigPin(&lPinCfg);
 }
 
-void OutputVoltage(){
-	PINSEL_CFG_Type PinCfg;
-	GPDMA_Channel_CFG_Type GPDMACfg;
-	DAC_CONVERTER_CFG_Type DAC_ConverterConfigStruct;
-	GPDMA_LLI_Type DMA_LLI_Struct;
-	uint32_t tmp;
-	uint32_t i;
+void outputVoltageDAC(){
+	
+	GPDMA_Channel_CFG_Type lGPDMACfg;
+	DAC_CONVERTER_CFG_Type lDAC_ConverterConfigStruct;
+	GPDMA_LLI_Type lDMA_LLI_Struct;
+	uint32_t iTmp;
+	
 	uint32_t sin_0_to_90_16_samples[16]={\
 			0,1045,2079,3090,4067,\
 			5000,5877,6691,7431,8090,\
 			8660,9135,9510,9781,9945,10000\
 	};
 	uint32_t dac_sine_lut[NUM_SINE_SAMPLE];
-	
-	PinCfg.Funcnum = 2;
-	PinCfg.OpenDrain = 0;
-	PinCfg.Pinmode = 0;
-	PinCfg.Pinnum = 26;
-	PinCfg.Portnum = 0;
-	PINSEL_ConfigPin(&PinCfg);
 
-
-	for(i=0;i<NUM_SINE_SAMPLE;i++)
+	for(uint32_t i=0;i<NUM_SINE_SAMPLE;i++)
 	{
 		if(i<=15)
 		{
@@ -67,10 +59,10 @@ void OutputVoltage(){
 		dac_sine_lut[i] = (dac_sine_lut[i]<<6);
 	}
 	//Prepare DMA link list item structure
-	DMA_LLI_Struct.SrcAddr= (uint32_t)dac_sine_lut;
-	DMA_LLI_Struct.DstAddr= (uint32_t)&(LPC_DAC->DACR);
-	DMA_LLI_Struct.NextLLI= (uint32_t)&DMA_LLI_Struct;
-	DMA_LLI_Struct.Control= DMA_SIZE
+	lDMA_LLI_Struct.SrcAddr= (uint32_t)dac_sine_lut;
+	lDMA_LLI_Struct.DstAddr= (uint32_t)&(LPC_DAC->DACR);
+	lDMA_LLI_Struct.NextLLI= (uint32_t)&lDMA_LLI_Struct;
+	lDMA_LLI_Struct.Control= DMA_SIZE
 							| (2<<18) //source width 32 bit
 							| (2<<21) //dest. width 32 bit
 							| (1<<26) //source increment
@@ -82,39 +74,39 @@ void OutputVoltage(){
 
 	// Setup GPDMA channel --------------------------------
 	// channel 0
-	GPDMACfg.ChannelNum = 0;
+	lGPDMACfg.ChannelNum = 0;
 	// Source memory
-	GPDMACfg.SrcMemAddr = (uint32_t)(dac_sine_lut);
+	lGPDMACfg.SrcMemAddr = (uint32_t)(dac_sine_lut);
 	// Destination memory - unused
-	GPDMACfg.DstMemAddr = 0;
+	lGPDMACfg.DstMemAddr = 0;
 	// Transfer size
-	GPDMACfg.TransferSize = DMA_SIZE;
+	lGPDMACfg.TransferSize = DMA_SIZE;
 	// Transfer width - unused
-	GPDMACfg.TransferWidth = 0;
+	lGPDMACfg.TransferWidth = 0;
 	// Transfer type
-	GPDMACfg.TransferType = GPDMA_TRANSFERTYPE_M2P;
+	lGPDMACfg.TransferType = GPDMA_TRANSFERTYPE_M2P;
 	// Source connection - unused
-	GPDMACfg.SrcConn = 0;
+	lGPDMACfg.SrcConn = 0;
 	// Destination connection
-	GPDMACfg.DstConn = GPDMA_CONN_DAC;
+	lGPDMACfg.DstConn = GPDMA_CONN_DAC;
 	// Linker List Item - unused
-	GPDMACfg.DMALLI = (uint32_t)&DMA_LLI_Struct;
+	lGPDMACfg.DMALLI = (uint32_t)&lDMA_LLI_Struct;
 	// Setup channel with given parameter
-	GPDMA_Setup(&GPDMACfg);
+	GPDMA_Setup(&lGPDMACfg);
 
-	DAC_ConverterConfigStruct.CNT_ENA =SET;
-	DAC_ConverterConfigStruct.DMA_ENA = SET;
+	lDAC_ConverterConfigStruct.CNT_ENA =SET;
+	lDAC_ConverterConfigStruct.DMA_ENA = SET;
 	DAC_Init(LPC_DAC);
 	/* set time out for DAC*/
-	tmp = (PCLK_DAC_IN_MHZ*1000000)/(SINE_FREQ_IN_HZ*NUM_SINE_SAMPLE);
-	DAC_SetDMATimeOut(LPC_DAC,tmp);
-	DAC_ConfigDAConverterControl(LPC_DAC, &DAC_ConverterConfigStruct);
+	iTmp = (PCLK_DAC_IN_MHZ*1000000)/(SINE_FREQ_IN_HZ*NUM_SINE_SAMPLE);
+	DAC_SetDMATimeOut(LPC_DAC,iTmp);
+	DAC_ConfigDAConverterControl(LPC_DAC, &lDAC_ConverterConfigStruct);
 	
 	// Enable GPDMA channel 0
 	GPDMA_ChannelCmd(0, ENABLE);
 	//while(1);
 }
 
-void OffDAC(void){
+void offDAC(void){
 	GPDMA_ChannelCmd(0, DISABLE);
 }

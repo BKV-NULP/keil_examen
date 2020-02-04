@@ -10,9 +10,9 @@
 #define _ADC_CHANNEL		ADC_CHANNEL_2
 
 
-void InitCanal(PINSEL_CFG_Type PinCfg);
+void initCanalADC(PINSEL_CFG_Type lPinCfg);
 
-float ReadVoltage(void);
+float readVoltageADC(void);
 
 #endif
 

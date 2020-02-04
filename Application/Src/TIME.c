@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    TIME.c          2020-01-24
+* $Id$    time.c          2020-01-24
 *
-* @file    TIME.c
+* @file    time.c
 * @brief	This file is intended for use with time.
-* @version  4.0
-* @date    24. January. 2019
+* @version  5.0
+* @date    31. January. 2019
 * @author  BVK
 *
 ***********************************************************************
@@ -14,34 +14,36 @@
 
 
 #include "time.h"
-#include "debug_frmwrk.h"
+#include "LPC17xx.h"
+#include "lpc_types.h"
 
 volatile unsigned long SysTickCnt = 0;
-unsigned long time = 0;
-int flagTime = 0;
+unsigned long gTime = 0;
+int flagTime = TIME_OFF;
 
 
 void SysTick_Handler (void) {
   SysTickCnt++;
-	if(SysTickCnt>=1000){
-		setFlag(1);
+	//we wait for 1 second;
+	if(SysTickCnt >= ONE_SECOND){ 
+		setFlag(TIME_ON);
 		SysTickCnt = 0;
-		time++;
+		gTime++;
 	}
 }
 
  unsigned long getTime(void){
-		return time;
+		return gTime;
 }
  
 int getFlag(void){
 	return flagTime;
 }
 
-void setFlag(int variable){
-	flagTime = variable;
+void setFlag(int lVariable){
+	flagTime = lVariable;
 }
 
-void timer_init(void){
-	SysTick_Config(SystemCoreClock/1000 - 1); 
+void initTimer(void){
+	SysTick_Config(SystemCoreClock/ONE_SECOND - 1); 
 }

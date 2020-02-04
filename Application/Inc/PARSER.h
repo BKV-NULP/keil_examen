@@ -20,7 +20,7 @@ enum State {
 	ERRORS
 }; 
 
-enum State parser(char* str, uint8_t count);
+enum State Parser(char* str, uint8_t count);
 
 uint8_t getPort(void);
 

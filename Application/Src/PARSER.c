@@ -1,10 +1,10 @@
 /**********************************************************************
-* $Id$    PARSER.c        2019-01-24
+* $Id$    parser.c        2019-01-24
 *
-* @file    PARSER.c
+* @file    parser.c
 * @brief  This example describes the functions of parser
-* @version  4.0
-* @date    24. January. 2019
+* @version  5.0
+* @date    31. January. 2019
 * @author  BVK
 *
 *******************************************************************
@@ -12,57 +12,54 @@ The file is intended to parse the entered characters from the
 terminal and to recognize the corresponding commands.
 **********************************************************************/
 
-#include "PARSER.h"
+#include "parser.h"
 
+uint8_t gPort;
+uint8_t gPin;
+uint8_t gData;
+uint8_t gDC;
+uint8_t gDataStr[SIZE_DATA_STR];
 
+enum State Parser(char* lStr, uint8_t lCount){
 
-uint8_t port;
-uint8_t pin;
-uint8_t data;
-uint8_t dc;
-uint8_t data_str[SIZE_DATA_STR];
-
-enum State parser(char* str, uint8_t count){
-
-	if(str[0] == ('h'&& str[1] == 0x0D)||
-	(str[0]=='h' &&	 str[1]=='e' && str[2] == 'l' && str[3] == 'p' && str[4] == 0x0D)){
+	if((lStr[0] == 'h' && lStr[1] == 0x0D)||(lStr[0]=='h' &&	 lStr[1]=='e' && lStr[2] == 'l' && lStr[3] == 'p')){
 		return HELP;
-	}else if(str[0] == 'p' && str[1] =='i' && str[2] == 'n'
-	&& count < 9 && count>=5){
-		int pin0  = (int)str[6]-48;
-		int pin2  = ((int)str[5]-48)*10;
-		setPin((uint8_t)(pin2 + pin0));
-		setPort((uint8_t)str[3]-48);
+	}else if(lStr[0] == 'p' && lStr[1] =='i' && lStr[2] == 'n'
+	&& lCount < 9 && lCount>=5){
+		int nPin0  = (int)lStr[6]-48;
+		int nPin2  = ((int)lStr[5]-48)*10;
+		setPin((uint8_t)(nPin2 + nPin0));
+		setPort((uint8_t)lStr[3]-48);
 		return PINX;
-	}else if(str[0] == 'p' && str[1] == 'i' && str[2] == 'n' && count < 18 && count>=7){
-		int pin0  = (int)str[6]-48;
-		int pin2  = ((int)str[5]-48)*10;
-		setPin((uint8_t)(pin2 + pin0));
-		setPort((uint8_t)str[3]-48);
-		setData((uint8_t)str[8] - 48);
+	}else if(lStr[0] == 'p' && lStr[1] == 'i' && lStr[2] == 'n' && lCount < 18 && lCount>=7){
+		int nPin0  = (int)lStr[6]-48;
+		int nPin2  = ((int)lStr[5]-48)*10;
+		setPin((uint8_t)(nPin2 + nPin0));
+		setPort((uint8_t)lStr[3]-48);
+		setData((uint8_t)lStr[8] - 48);
 		return PINXexactlyY;
-	}else if(str[0] == 'A' && str[1] == 'D' && str[2] == 'C' && count>=2&&count<=6){
+	}else if(lStr[0] == 'A' && lStr[1] == 'D' && lStr[2] == 'C' && lCount>=2&&lCount<=6){
 		return ADC;
-	}else if(str[0] == 'A' && str[1] == 'D' && str[2] == 'C' && str[3] == 'c' && str[4] == 'o' && str[5] == 'u' && str[6] == 'n' && str[7] == 't'){
+	}else if(lStr[0] == 'A' && lStr[1] == 'D' && lStr[2] == 'C' && lStr[3] == 'c' && lStr[4] == 'o' && lStr[5] == 'u' && lStr[6] == 'n' && lStr[7] == 't'){
 		return ADCcount;
-	}else if(str[0] == 't' && str[1] == 'i' && str[2] == 'm' && str[3] == 'e' ){
+	}else if(lStr[0] == 't' && lStr[1] == 'i' && lStr[2] == 'm' && lStr[3] == 'e' ){
 		return TIME;
-	}else if(str[0] == 'D' && str[1] == 'A' && str[2] == 'C'){
+	}else if(lStr[0] == 'D' && lStr[1] == 'A' && lStr[2] == 'C'){
 		return DAC;
-	}else if(str[0] == 's' && str[1] == 't' && str[2] == 'o' && str[3] == 'r' && str[4] == 'e'){
-		seDataStr((uint8_t*)str);		
+	}else if(lStr[0] == 's' && lStr[1] == 't' && lStr[2] == 'o' && lStr[3] == 'r' && lStr[4] == 'e'){
+		seDataStr((uint8_t*)lStr);		
 	return STORE;
-	}else if(str[0] == 'r' && str[1] == 'e' && str[2] == 'a' && str[3] == 'd' ){
+	}else if(lStr[0] == 'r' && lStr[1] == 'e' && lStr[2] == 'a' && lStr[3] == 'd' ){
 		return READ;
 	}
-	else if(str[0] == 'P' && str[1] == 'W' && str[2] == 'M' && str[4] == '='){
-		int dc1  = (int)str[6]-48;
-		int dc2  = ((int)str[5]-48)*10;
-		setDC((uint8_t)(dc2 + dc1));
-		setPin((uint8_t)str[3]-48);		
+	else if(lStr[0] == 'P' && lStr[1] == 'W' && lStr[2] == 'M' && lStr[4] == '='){
+		int iDC1  = (int)lStr[6]-48;
+		int iDC2  = ((int)lStr[5]-48)*10;
+		setDC((uint8_t)(iDC2 + iDC1));
+		setPin((uint8_t)lStr[3]-48);		
 		return PWMXexactlyY;
-	}else if(str[0] == 'P' && str[1] == 'W' && str[2] == 'M'  && count<6){
-		setPin((uint8_t)str[3]-48);
+	}else if(lStr[0] == 'P' && lStr[1] == 'W' && lStr[2] == 'M'  && lCount<6){
+		setPin((uint8_t)lStr[3]-48);
 		return PWMX;
 	}
 	else{
@@ -71,43 +68,43 @@ enum State parser(char* str, uint8_t count){
 }
 
 uint8_t getPort(void){
-	return port;
+	return gPort;
 }
 
 uint8_t getPin(void){
-	return pin;
+	return gPin;
 }
 
 uint8_t getData(void){
-	return data;
+	return gData;
 }
 
 uint8_t getDC(void){
-	return dc;
+	return gDC;
 }
 
 uint8_t* getDataStr(void){
-	return data_str;
+	return gDataStr;
 }
 
 void setPort(uint8_t variable){
-	port = variable;
+	gPort = variable;
 }
 
 void setPin(uint8_t variable){
-	pin = variable;
+	gPin = variable;
 }
 
 void setData(uint8_t variable){
-	data = variable;
+	gData = variable;
 }
 
 void setDC(uint8_t variable){
-	dc = variable;
+	gDC = variable;
 }
 
 void seDataStr(uint8_t* variable){
 	for(int i = 0;i<SIZE_DATA_STR;i++){
-		data_str[i] = variable[i+6];
+		gDataStr[i] = variable[i+6];
 	}
 }
